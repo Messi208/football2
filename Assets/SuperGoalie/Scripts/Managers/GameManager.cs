@@ -135,7 +135,7 @@ namespace Assets.SuperGoalie.Scripts.Managers
 
                     //kick the ball
                     Movement.y = 0.03f;
-                    _ball.Rigidbody.velocity = Movement * _ballDribbleForce;
+                    _ball.Rigidbody.linearVelocity = Movement * _ballDribbleForce;
                 }
             }
 

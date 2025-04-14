@@ -28,7 +28,7 @@ public class BallCatcher : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 //_forceSlider.value += 0.005f;
-                _image.fillAmount += 0.005f;
+                _image.fillAmount += 0.0008f;
             }
             if (Input.GetMouseButtonUp(0))
             {
@@ -53,7 +53,7 @@ public class BallCatcher : MonoBehaviour
             other.transform.parent = transform;
             _ball = other.GetComponent<Rigidbody>();
             _ball.transform.position = transform.position;
-            _ball.velocity = Vector3.zero;
+            _ball.linearVelocity = Vector3.zero;
         }
 
     }

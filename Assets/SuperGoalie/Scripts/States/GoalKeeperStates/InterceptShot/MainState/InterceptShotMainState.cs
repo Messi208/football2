@@ -145,8 +145,8 @@ namespace Assets.SuperGoalie.Scripts.States.GoalKeeperStates.InterceptShot.MainS
             if (_turn == 0f)
             {
                 //check if the right hand can punch the ball
-                BallTrapable = GetDistOfBoneToPosition(HumanBodyBones.RightHand, _normalizedBallPosition) <= GetDistanceTravelledInSingleFrame(Owner.Ball.Rigidbody.velocity)
-                    || GetDistOfBoneToPosition(HumanBodyBones.LeftHand, _normalizedBallPosition) <= GetDistanceTravelledInSingleFrame(Owner.Ball.Rigidbody.velocity);
+                BallTrapable = GetDistOfBoneToPosition(HumanBodyBones.RightHand, _normalizedBallPosition) <= GetDistanceTravelledInSingleFrame(Owner.Ball.Rigidbody.linearVelocity)
+                    || GetDistOfBoneToPosition(HumanBodyBones.LeftHand, _normalizedBallPosition) <= GetDistanceTravelledInSingleFrame(Owner.Ball.Rigidbody.linearVelocity);
 
                 //punch the ball
                 if (BallTrapable)
@@ -156,7 +156,7 @@ namespace Assets.SuperGoalie.Scripts.States.GoalKeeperStates.InterceptShot.MainS
             {
                 //check if the right hand can punch the ball
                 float distanceBetweenHandAndBall = GetDistOfBoneToPosition(HumanBodyBones.RightHand, _normalizedBallPosition);
-                BallTrapable = distanceBetweenHandAndBall <= GetDistanceTravelledInSingleFrame(Owner.Ball.Rigidbody.velocity);
+                BallTrapable = distanceBetweenHandAndBall <= GetDistanceTravelledInSingleFrame(Owner.Ball.Rigidbody.linearVelocity);
 
                 //punch the ball
                 if (BallTrapable)
@@ -166,7 +166,7 @@ namespace Assets.SuperGoalie.Scripts.States.GoalKeeperStates.InterceptShot.MainS
             {
                 //check if the left hand can punch the ball
                 float distanceBetweenHandAndBall = GetDistOfBoneToPosition(HumanBodyBones.LeftHand, _normalizedBallPosition);
-                BallTrapable = distanceBetweenHandAndBall <= GetDistanceTravelledInSingleFrame(Owner.Ball.Rigidbody.velocity);
+                BallTrapable = distanceBetweenHandAndBall <= GetDistanceTravelledInSingleFrame(Owner.Ball.Rigidbody.linearVelocity);
 
                 //punch the ball
                 if (BallTrapable)

@@ -188,12 +188,12 @@ namespace Assets.SimpleSteering.Scripts.Movement
         {
             get
             {
-                return RigidBody.velocity;
+                return RigidBody.linearVelocity;
             }
 
             set
             {
-                RigidBody.velocity = value;
+                RigidBody.linearVelocity = value;
             }
         }
     }

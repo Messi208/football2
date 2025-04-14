@@ -55,7 +55,7 @@ namespace Assets.SuperGoalie.Scripts.States.GoalKeeperStates.Dive.MainState
                 //punch the ball
                 ballPunchDirection = Owner.transform.TransformDirection(ballPunchDirection);
                 ballPunchDirection.Normalize();
-                Owner.Ball.Rigidbody.velocity = ballPunchDirection * 0.5f * Owner.Ball.Rigidbody.velocity.magnitude;
+                Owner.Ball.Rigidbody.linearVelocity = ballPunchDirection * 0.5f * Owner.Ball.Rigidbody.linearVelocity.magnitude;
             }
 
             //set the animator to exit the dive state

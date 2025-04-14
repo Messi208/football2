@@ -30,13 +30,13 @@ namespace Assets.SuperGoalie.Scripts.Entities
         public void Stop()
         {
             Rigidbody.angularVelocity = Vector3.zero;
-            Rigidbody.velocity = Vector3.zero;
+            Rigidbody.linearVelocity = Vector3.zero;
         }
 
         public Vector3 FuturePosition(float time)
         {
             //get the velocities
-            Vector3 velocity = Rigidbody.velocity;
+            Vector3 velocity = Rigidbody.linearVelocity;
             Vector3 velocityXZ = velocity;
             velocityXZ.y = 0f;
 
@@ -79,7 +79,7 @@ namespace Assets.SuperGoalie.Scripts.Entities
             velocity.y = toTarget.y / time + (0.5f * gravity * time);
 
             //return the velocity
-            Rigidbody.velocity = velocity;
+            Rigidbody.linearVelocity = velocity;
 
             //invoke the ball launched event
             BallLaunched temp = OnBallLaunched;

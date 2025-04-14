@@ -20,6 +20,7 @@ public class Keeper : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
         _catcher = GetComponentInChildren<BallCatcher>();
+        _pos = transform.position;
     }
 
     void Update()
@@ -27,20 +28,33 @@ public class Keeper : MonoBehaviour
         _haveball = _catcher.transform.childCount > 0;
         _ball.isKinematic = _haveball;
 
-        if (Vector3.Distance(transform.position, _ball.position) < 10 && !_haveball)
+        if (Vector3.Distance(_pos, _ball.position) < _radius && !_haveball)
         {
-            _rb.velocity = (_ball.transform.position - transform.position).normalized * _speed;
+            _rb.isKinematic = false;
+            _rb.linearVelocity = (_ball.transform.position - transform.position).normalized * _speed;
         }
+        else
+        {
+            _rb.linearVelocity = (_pos - transform.position).normalized * _speed;
+
+            if (Vector3.Distance(transform.position, _pos) < 1)
+                _rb.isKinematic = true;
+        }
+
         if (_haveball)
-            Strike();
+            StartCoroutine(Strike());
     }
 
     [ContextMenu("Strike")]
-    private void Strike()
+    private IEnumerator Strike()
     {
+        _catcher.GetComponent<SphereCollider>().enabled = false;
         _ball.isKinematic = false;
-        _haveball = false;
+        transform.localEulerAngles = Vector3.up * Random.Range(-60, 60);
         _ball.AddForce((-transform.forward + transform.up) * _force, ForceMode.Impulse);
+        _ball.transform.parent = null;
+        yield return new WaitForSeconds(1);
+        _catcher.GetComponent <SphereCollider>().enabled = true;
     }
 
 }
